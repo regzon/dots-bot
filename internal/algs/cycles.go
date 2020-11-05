@@ -55,13 +55,6 @@ func dfs(node, prev *Node, cycles *[][]*Node) {
 	node.state = completelyVisited
 }
 
-func cleanNodes(nodes []*Node) {
-	for _, node := range nodes {
-		node.parent = nil
-		node.state = notVisited
-	}
-}
-
 func DetectCycles(baseNodes []BaseNode) (res [][]BaseNode) {
 	// TODO: rewrite to return all induced cycles
 
@@ -83,12 +76,6 @@ func DetectCycles(baseNodes []BaseNode) (res [][]BaseNode) {
 	var cycles [][]*Node
 
 	dfs(nodes[0], nil, &cycles)
-	/*
-		for _, node := range nodes {
-			dfs(node, nil, &cycles)
-			cleanNodes(nodes)
-		}
-	*/
 
 	for _, cycle := range cycles {
 		baseCycle := []BaseNode{}

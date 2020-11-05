@@ -11,8 +11,8 @@ import (
 func main() {
 	fmt.Println("You've started playing dots")
 
-	if len(os.Args) != 3 {
-		fmt.Printf("Usage: %s WIDTH HEIGHT\n", os.Args[0])
+	if len(os.Args) != 4 {
+		fmt.Printf("Usage: %s WIDTH HEIGHT MAXDEPTH\n", os.Args[0])
 		os.Exit(1)
 	}
 
@@ -28,5 +28,11 @@ func main() {
 		os.Exit(1)
 	}
 
-	game.MainLoop(width, height)
+	maxDepth, err := strconv.Atoi(os.Args[3])
+	if err != nil {
+		fmt.Println("Failed to parse maxDepth parameter")
+		os.Exit(1)
+	}
+
+	game.MainLoop(width, height, maxDepth)
 }

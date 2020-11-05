@@ -12,9 +12,16 @@ func DrawBoard(board *base.Board) {
 	red := color.New(color.FgRed)
 	cyan := color.New(color.FgCyan)
 
-	for _, row := range board.Cells {
-		for _, v := range row {
+	fmt.Print(" ")
+	for i := range board.Cells[0] {
+		fmt.Printf("%c", 'A'+i)
+	}
+	fmt.Println()
 
+	for i, row := range board.Cells {
+		fmt.Printf("%c", 'A'+i)
+
+		for _, v := range row {
 			switch v {
 			case base.Empty:
 				white.Print(".")
@@ -26,6 +33,10 @@ func DrawBoard(board *base.Board) {
 				cyan.Print("+")
 			case base.Captured2:
 				red.Print("+")
+			case base.SemiCaptured1:
+				cyan.Print("-")
+			case base.SemiCaptured2:
+				red.Print("-")
 			}
 		}
 		fmt.Println()
